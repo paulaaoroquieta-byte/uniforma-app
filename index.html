@@ -223,6 +223,13 @@ function verCon(){const c=window.uniformaConexion&&window.uniformaConexion.get()
 verCon();
 $("btnCon").onclick=()=>{const ok=window.uniformaConexion.guardar($("codigo").value);$("conMsg").textContent=ok?"¡Listo! Ya quedó conectada.":"Ese código no parece correcto. Copialo entero de nuevo.";if(ok){setTimeout(()=>location.reload(),900)}};
 $("t-plata").onclick=()=>{location.href="https://claude.ai/artifact/RX6Kup39HMUVnudXme9gwe";};
-if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+if("serviceWorker" in navigator){
+  const habia=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register("sw.js").then(r=>r.update()).catch(()=>{});
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{if(habia)location.reload()});
+}
+// si la app quedó abierta de otro día o hace más de una hora, se actualiza sola al volver
+const abierta=Date.now();
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&(Date.now()-abierta>36e5||new Date().toDateString()!==new Date(abierta).toDateString()))location.reload()});
 </script>
 </body></html>
