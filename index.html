@@ -218,7 +218,7 @@ function tab(id){
 
 function verCon(){const c=window.uniformaConexion&&window.uniformaConexion.get();$("conectar").hidden=!!c;}
 verCon();
-$("btnCon").onclick=()=>{const ok=window.uniformaConexion.guardar($("codigo").value);$("conMsg").textContent=ok?"¡Listo! Ya quedó conectada.":"Ese código no parece correcto. Copialo entero de nuevo.";if(ok){setTimeout(()=>{verCon();window.uniformaEstado&&window.uniformaEstado.sincronizar()},700)}};
+$("btnCon").onclick=()=>{const ok=window.uniformaConexion.guardar($("codigo").value);$("conMsg").textContent=ok?"¡Listo! Ya quedó conectada.":"Ese código no parece correcto. Copialo entero de nuevo.";if(ok){setTimeout(()=>location.reload(),900)}};
 $("t-plata").onclick=()=>{location.href="https://claude.ai/artifact/RX6Kup39HMUVnudXme9gwe";};
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
