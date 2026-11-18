@@ -180,13 +180,13 @@
     const n = outbox.length + ls.get(K_REPO, []).length + (ls.get(K_ESC, null) ? 1 : 0);
     const fallos = ls.get(K_FALLO, []);
     let t, bg = "#e3f4ea", fg = "#1d7a4a";
-    if (!cfg()) { t = "Sin conectar a Google"; bg = "#fff1dc"; fg = "#a25a00"; }
+    if (!cfg()) { pill.hidden = true; return; }
     else if (fallos.length) { t = "⚠ " + fallos[fallos.length - 1].error; bg = "#fde8e6"; fg = "#b42318"; }
     else if (!navigator.onLine) { t = "Sin señal" + (n ? " · " + n + " por enviar" : " · todo guardado en el celular"); bg = "#fff1dc"; fg = "#a25a00"; }
     else if (sincronizando) t = "Sincronizando…";
     else if (n) { t = n + " por enviar"; bg = "#fff1dc"; fg = "#a25a00"; }
     else t = "✓ Al día";
-    pill.textContent = t; pill.style.background = bg; pill.style.color = fg;
+    pill.hidden = false; pill.textContent = t; pill.style.background = bg; pill.style.color = fg;
   }
   window.uniformaEstado = { fallos: () => ls.get(K_FALLO, []), limpiarFallos: () => { try { localStorage.removeItem(K_FALLO); } catch (e) {} estado(); }, sincronizar };
   document.addEventListener("DOMContentLoaded", () => { estado(); sincronizar(); });
