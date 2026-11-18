@@ -166,9 +166,9 @@ const I={
  factura:'<path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/>'
 };
 const CORTE=[
- {n:"Cortes Uniforma",d:"Cortes, stock del taller y entregas",u:"cortes.html",local:1,i:"tijera",k:"corte stock taller entregas libreria majo prendas",prin:1},
- {n:"Stock Fátima",d:"Taller, librería y confección",u:"cortes.html#stock-fatima",local:1,i:"estante",k:"stock fatima faltan temporada"},
- {n:"Remito a la librería",d:"Llevar a Majo y descontar del taller",u:"cortes.html#llevar-libreria",local:1,i:"remito",k:"remito libreria majo llevar entrega descontar stock"},
+ {n:"Cortes Uniforma",d:"Cortes, stock del taller y entregas",u:"cortes.html",local:1,alt:B+"f4d87c12-2f78-4682-8a59-cbca581a1a71",i:"tijera",k:"corte stock taller entregas libreria majo prendas",prin:1},
+ {n:"Stock Fátima",d:"Taller, librería y confección",u:"cortes.html#stock-fatima",local:1,alt:"https://claude.ai/artifact/XEc98DzdTYtxzQbasjVGDW#stock-fatima",i:"estante",k:"stock fatima faltan temporada"},
+ {n:"Remito a la librería",d:"Llevar a Majo y descontar del taller",u:"cortes.html#llevar-libreria",local:1,alt:"https://claude.ai/artifact/XEc98DzdTYtxzQbasjVGDW#llevar-libreria",i:"remito",k:"remito libreria majo llevar entrega descontar stock"},
  {n:"Agenda",d:"Pedidos y pagos de la semana",u:B+"ad2b141a-8dff-4692-a79f-38fd6f7b3a5a",i:"agenda",k:"agenda calendario semana pagos etapas pedidos"}
 ];
 const GRUPOS=[
@@ -189,6 +189,8 @@ const GRUPOS=[
   {n:"Calculadora de Tela",u:B+"07cd08c8-e071-42af-9281-e756f20e3301",i:"metro",k:"calculadora tela insumos metros"}]}
 ];
 const app=n=>GRUPOS.flatMap(g=>g.a).find(a=>a.n===n);
+const conectada=()=>!!(window.uniformaConexion&&window.uniformaConexion.get());
+CORTE.forEach(a=>{if(a.local&&!conectada()){a.u=a.alt;a.local=0}});
 const ic=n=>`<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${I[n]}</svg></span>`;
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
 const $=id=>document.getElementById(id);
