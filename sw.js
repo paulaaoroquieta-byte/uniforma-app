@@ -1,5 +1,5 @@
-const C="uniforma-v2";
-const F=["./","index.html","cortes.html","shim.js","manifest.webmanifest","icon-192.png","icon-512.png","apple-touch-icon.png","https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"];
+const C="uniforma-v3";
+const F=["./","index.html","cortes.html","tecnica.html","shim.js","manifest.webmanifest","icon-192.png","icon-512.png","apple-touch-icon.png","https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"];
 self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(C).then(c=>Promise.all(F.map(u=>c.add(u).catch(()=>{})))))});
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 self.addEventListener("fetch",e=>{

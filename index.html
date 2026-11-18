@@ -173,7 +173,7 @@ const CORTE=[
 ];
 const GRUPOS=[
  {t:"Clientes",c:"g-cli",a:[
-  {n:"Técnica",u:"https://claude.ai/artifact/4RxEFeDU6EtHeUeFvjbLQy",i:"edificio",k:"uniforma tecnica remitos comision entregas precios lista logos"},
+  {n:"Técnica",u:"tecnica.html",local:1,alt:"https://claude.ai/artifact/4RxEFeDU6EtHeUeFvjbLQy",i:"edificio",k:"uniforma tecnica remitos comision entregas precios lista logos"},
   {n:"Las Floritas",u:B+"e15e2780-0c72-4d1b-b6aa-8ef5df88da2f",i:"flor",k:"floritas brenda cuenta corriente remitos pagos telas"},
   {n:"UTHGRA",u:B+"ddd6c5cf-8e7e-4505-a6a6-3864a802ea34",i:"gorroChef",k:"uthgra zona norte pedidos depositos cuenta"}]},
  {t:"Colegio Fátima",c:"g-fat",a:[
@@ -190,7 +190,7 @@ const GRUPOS=[
 ];
 const app=n=>GRUPOS.flatMap(g=>g.a).find(a=>a.n===n);
 const conectada=()=>!!(window.uniformaConexion&&window.uniformaConexion.get());
-CORTE.forEach(a=>{if(a.local&&!conectada()){a.u=a.alt;a.local=0}});
+CORTE.concat(...GRUPOS.map(g=>g.a)).forEach(a=>{if(a.local&&!conectada()){a.u=a.alt;a.local=0}});
 const ic=n=>`<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${I[n]}</svg></span>`;
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
 const $=id=>document.getElementById(id);
@@ -200,7 +200,7 @@ function pintarApps(){
   let h="";
   const c=CORTE.filter(ok);
   if(c.length)h+=`<h2>Corte · uso diario</h2><div class="dest">`+c.map(a=>`<a class="dcard${a.prin&&!q?" prin":""}" href="${a.u}"${a.local?"":' target="_blank" rel="noopener"'}>${ic(a.i)}<span><span class="nm">${a.n}</span><br><span class="ds">${a.d}</span></span>${a.prin&&!q?'<span class="fl" aria-hidden="true">→</span>':""}</a>`).join("")+`</div>`;
-  GRUPOS.forEach(g=>{const l=g.a.filter(ok);if(l.length)h+=`<h2>${g.t}</h2><div class="apps ${g.c}">`+l.map(a=>`<a class="app" href="${a.u}" target="_blank" rel="noopener">${ic(a.i)}<span class="nm">${a.n}</span></a>`).join("")+`</div>`;});
+  GRUPOS.forEach(g=>{const l=g.a.filter(ok);if(l.length)h+=`<h2>${g.t}</h2><div class="apps ${g.c}">`+l.map(a=>`<a class="app" href="${a.u}"${a.local?"":' target="_blank" rel="noopener"'}>${ic(a.i)}<span class="nm">${a.n}</span></a>`).join("")+`</div>`;});
   $("appsBody").innerHTML=h||`<p class="vacio">No encontré ninguna app con esa palabra.</p>`;
 }
 $("q").addEventListener("input",pintarApps);

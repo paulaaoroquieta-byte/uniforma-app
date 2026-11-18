@@ -557,7 +557,7 @@ function libMsg(){
 }
 
 /* ---------- Técnica: vínculo con la app de Técnica por la planilla ---------- */
-const TEC_APP="https://claude.ai/artifact/4RxEFeDU6EtHeUeFvjbLQy";
+const TEC_APP="tecnica.html";
 const TEC_PROD={chomba:"Chomba piqué",guardapolvo:"Guardapolvo",campera:"Campera"};
 const tecProd=p=>TEC_PROD[norm(p)]||p;
 const tecTalle=t=>{const x=String(t||"").trim().toUpperCase();return x==="XXXXL"?"4XL":x};
@@ -574,7 +574,7 @@ function renderStockTec(mine){
   const keys=[...new Set(Object.keys(m).concat(Object.keys(pr)))];
   const prods=[...new Set(keys.map(k=>k.split("|")[0]))];
   let h=`<div class="sheetbar"><span>${tecStock.status==="ok"?`🔗 Stock del taller según la app de Técnica${tecStock.at?" · actualizado "+esc(tecStock.at):""}`:tecStock.status==="loading"?"Leyendo el stock de Técnica…":"No se pudo leer el stock de Técnica."}</span><button type="button" class="lnk2" id="reTec">Actualizar</button></div>
-    <p class="meta" style="margin:8px 0 0">Las entregas a Técnica y los cambios de stock se cargan en la <a href="${TEC_APP}" target="_blank" rel="noopener">app de Técnica</a>. Los cortes que cargás acá aparecen allá solos, y al pasarlos a “Entregado ✓” se suman a su stock.</p>`;
+    <p class="meta" style="margin:8px 0 0">Las entregas a Técnica y los cambios de stock se cargan en la <a href="${TEC_APP}">app de Técnica</a>. Los cortes que cargás acá aparecen allá solos, y al pasarlos a “Entregado ✓” se suman a su stock.</p>`;
   const T=Object.values(m).reduce((a,x)=>a+x.tal,0),P=Object.values(pr).reduce((a,x)=>a+x,0);
   h+=`<div class="stats"><div class="stat"><small>En el taller</small><b>${tecStock.status==="ok"?T:"—"}</b></div><div class="stat"><small>En proceso (cortes)</small><b>${P}</b></div></div>`;
   if(!prods.length)return h+`<div class="stockgrid"><div class="empty"><b>Sin datos todavía</b>Abrí la app de Técnica una vez para que publique su stock.</div></div>`;
