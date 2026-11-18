@@ -1,0 +1,207 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png">
+<meta name="theme-color" content="#1f4fa8">
+</head><body>
+<title>Uniforma</title>
+<meta name="apple-mobile-web-app-title" content="Uniforma">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f4f6fa; --surface:#ffffff; --fg:#0f2440; --muted:#64748b; --line:#e3e8ef;
+  --azul:#1f4fa8; --azul-soft:#e8effb; --celeste:#5fb3e6;
+  --c-corte:#1f4fa8; --c-cli:#0e7490; --c-fat:#7a4cc2; --c-plata:#1f8a5b; --ok:#1f8a5b; --bad:#c2410c;
+  --display:"Archivo",system-ui,sans-serif; --body:"Figtree",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0b1220; --surface:#141d2e; --fg:#e8eef8; --muted:#94a3b8; --line:#243047;
+  --azul:#8fb0f5; --azul-soft:#1a2a47; --celeste:#6fc3f2;
+  --c-corte:#8fb0f5; --c-cli:#5ec8dd; --c-fat:#b99cf0; --c-plata:#5fcf9a; --ok:#5fcf9a; --bad:#fb923c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1220; --surface:#141d2e; --fg:#e8eef8; --muted:#94a3b8; --line:#243047;
+  --azul:#8fb0f5; --azul-soft:#1a2a47; --celeste:#6fc3f2;
+  --c-corte:#8fb0f5; --c-cli:#5ec8dd; --c-fat:#b99cf0; --c-plata:#5fcf9a; --ok:#5fcf9a; --bad:#fb923c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.4;margin:0;
+  padding:0 max(16px,env(safe-area-inset-left,0px)) calc(84px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:720px;margin:0 auto}
+.top{display:flex;align-items:center;gap:10px;padding:16px 0 12px}
+.top img{width:40px;height:40px;object-fit:contain}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .top img{filter:brightness(0) invert(1)}}
+:root[data-theme="dark"] .top img{filter:brightness(0) invert(1)}
+.top h1{font-family:var(--display);font-weight:800;font-size:22px;margin:0;letter-spacing:-.01em}
+.top .hoy{margin-left:auto;font-size:13px;color:var(--muted);text-transform:capitalize}
+.vista[hidden]{display:none}
+h2{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px;font-weight:700}
+/* Corte destacadas */
+.dest{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dcard{display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:var(--surface);border:1px solid var(--line);color:inherit;text-decoration:none;min-height:104px}
+.dcard.prin{grid-column:1/-1;flex-direction:row;align-items:center;background:var(--azul);border-color:var(--azul);color:#fff;min-height:0;padding:16px}
+:root[data-theme="dark"] .dcard.prin{color:#0b1220}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dcard.prin{color:#0b1220}}
+.dcard.prin .ic{background:rgba(255,255,255,.18);color:inherit}
+.dcard.prin .nm{font-size:18px}
+.dcard.prin .ds{color:inherit;opacity:.85}
+.dcard.prin .fl{margin-left:auto;font-size:22px;opacity:.8}
+.dcard .nm{font-family:var(--display);font-weight:700;font-size:15px}
+.dcard .ds{font-size:12.5px;color:var(--muted)}
+.ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--azul-soft);color:var(--c-corte)}
+.ic svg{width:22px;height:22px}
+/* grilla de íconos */
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 8px}
+@media (min-width:560px){.apps{grid-template-columns:repeat(6,1fr)}}
+.app{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:inherit;text-align:center}
+.app .ic{width:58px;height:58px;border-radius:16px;background:var(--surface);border:1px solid var(--line);box-shadow:0 1px 2px rgba(15,36,64,.06)}
+.app .ic svg{width:26px;height:26px}
+.app span.nm{font-size:12px;line-height:1.2;font-weight:500;max-width:84px}
+.g-cli .ic{color:var(--c-cli)} .g-fat .ic{color:var(--c-fat)} .g-plata .ic{color:var(--c-plata)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--celeste);outline-offset:2px;border-radius:12px}
+.buscar{position:relative;margin-top:4px}
+.buscar input{width:100%;font:inherit;font-size:16px;padding:11px 14px 11px 40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.buscar svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.vacio{color:var(--muted);text-align:center;padding:20px}
+/* Plata */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+.big{background:var(--azul);color:#fff;border:0}
+:root[data-theme="dark"] .big{color:#0b1220}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .big{color:#0b1220}}
+.big .k{font-size:13px;font-weight:600;opacity:.9}
+.big .v{font-family:var(--display);font-weight:800;font-size:clamp(32px,9vw,44px);line-height:1.1;font-variant-numeric:tabular-nums;margin:2px 0 6px}
+.big .det{display:grid;gap:2px;font-size:13px;opacity:.92}
+.big .det div{display:flex;justify-content:space-between;gap:10px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.kpi span{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.kpi b{font-family:var(--display);font-size:20px;font-variant-numeric:tabular-nums}
+.kpi b.neg{color:var(--bad)}
+.lista{list-style:none;margin:0;padding:0}
+.lista li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.lista li:last-child{border-bottom:0}
+.lista small{display:block;color:var(--muted);font-size:12px}
+.lista b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.lista b.in{color:var(--ok)}
+.lista a{color:inherit;text-decoration:none;display:flex;justify-content:space-between;align-items:center;width:100%;gap:10px}
+.lista .fl{color:var(--muted)}
+.fila{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fila button{font:inherit;font-size:13px;font-weight:600;border:0;background:none;color:var(--azul);cursor:pointer;padding:4px}
+.nota{color:var(--muted);font-size:13px;margin:8px 0 0}
+.nota.err{color:var(--bad)}
+.sep .monto{font-family:var(--display);font-weight:800;font-size:30px;color:var(--ok);font-variant-numeric:tabular-nums;line-height:1.1}
+.sep .monto.cero{color:var(--muted)}
+.sep .rep{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.sep .rep div{background:var(--azul-soft);border-radius:12px;padding:8px 10px}
+.sep .rep span{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.sep .rep b{font-variant-numeric:tabular-nums}
+.lista b.out{color:var(--fg)}
+.mas{display:block;text-align:center;font-weight:600;color:var(--azul);text-decoration:none;padding:10px 0 0;font-size:14px}
+/* barra inferior */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+nav.tabs button{flex:1;max-width:200px;font:inherit;font-size:12px;font-weight:600;border:0;background:none;color:var(--muted);padding:10px 0 12px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
+nav.tabs button svg{width:24px;height:24px}
+nav.tabs button[aria-selected="true"]{color:var(--azul)}
+.ayuda{margin-top:26px}
+.ayuda summary{cursor:pointer;color:var(--muted);font-size:13px;font-weight:600}
+.ayuda p{color:var(--muted);font-size:13px;margin:6px 0}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <img src="icon-192.png" alt="">
+    <h1>Uniforma</h1>
+    <span class="hoy" id="hoy"></span>
+  </header>
+
+  <main class="vista" id="v-apps">
+    <div class="buscar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Buscar app…" autocomplete="off" aria-label="Buscar app">
+    </div>
+    <div id="appsBody"></div>
+    <details class="ayuda" hidden>
+      <summary>Poner Uniforma en la pantalla de inicio del celular</summary>
+      <p><b>iPhone:</b> en Safari tocá Compartir y elegí <b>Agregar a inicio</b>.</p>
+      <p><b>Android:</b> en Chrome tocá ⋮ y elegí <b>Agregar a la pantalla principal</b>.</p>
+    </details>
+  </main>
+
+</div>
+
+<nav class="tabs" role="tablist" aria-label="Secciones">
+  <button type="button" role="tab" id="t-apps" aria-selected="true" aria-controls="v-apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Apps</button>
+  <button type="button" role="tab" id="t-plata" aria-selected="false" aria-controls="v-plata"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="2.5"/><path d="M6 10v5M18 10v5"/></svg>Plata</button>
+</nav>
+
+<script>
+const B="https://claude.ai/code/artifact/";
+const I={
+ tijera:'<path d="M6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>',
+ aguja:'<path d="M19 3 5 17l-2 4 4-2L21 5zM15 7l2 2"/>',
+ metro:'<rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 7v4M10 7v3M14 7v4M18 7v3"/>',
+ agenda:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
+ remito:'<path d="M6 2h9l4 4v16H6z"/><path d="M14 2v5h5M9 12h7M9 16h7"/>',
+ precio:'<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
+ flor:'<circle cx="12" cy="12" r="2.5"/><path d="M12 9.5V4M12 20v-5.5M9.5 12H4M20 12h-5.5M10 10 6.5 6.5M17.5 17.5 14 14M14 10l3.5-3.5M6.5 17.5 10 14"/>',
+ gorroChef:'<path d="M7 21h10M7 17h10v4H7zM6 17a4 4 0 0 1-1-7.9A4 4 0 0 1 12 5a4 4 0 0 1 7 4.1A4 4 0 0 1 18 17"/>',
+ edificio:'<path d="M4 21V5l8-3v19M12 21V8l8 3v10M2 21h20M7 8h2M7 12h2M7 16h2M15 13h2M15 17h2"/>',
+ gorro:'<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v6"/>',
+ bolsa:'<path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+ libro:'<path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/>',
+ caja:'<rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="2.5"/><path d="M6 10v5M18 10v5"/>',
+ estante:'<path d="M3 4h18v16H3zM3 10h18M3 15h18"/><path d="M7 7h3M14 12.5h3M7 17.5h4"/>',
+ planilla:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>',
+ factura:'<path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/>'
+};
+const CORTE=[
+ {n:"Cortes Uniforma",d:"Cortes, stock del taller y entregas",u:B+"f4d87c12-2f78-4682-8a59-cbca581a1a71",i:"tijera",k:"corte stock taller entregas libreria majo prendas",prin:1},
+ {n:"Stock Fátima",d:"Taller, librería y confección",u:"https://claude.ai/artifact/XEc98DzdTYtxzQbasjVGDW#stock-fatima",i:"estante",k:"stock fatima faltan temporada"},
+ {n:"Remito a la librería",d:"Llevar a Majo y descontar del taller",u:"https://claude.ai/artifact/XEc98DzdTYtxzQbasjVGDW#llevar-libreria",i:"remito",k:"remito libreria majo llevar entrega descontar stock"},
+ {n:"Agenda",d:"Pedidos y pagos de la semana",u:B+"ad2b141a-8dff-4692-a79f-38fd6f7b3a5a",i:"agenda",k:"agenda calendario semana pagos etapas pedidos"}
+];
+const GRUPOS=[
+ {t:"Clientes",c:"g-cli",a:[
+  {n:"Técnica",u:"https://claude.ai/artifact/4RxEFeDU6EtHeUeFvjbLQy",i:"edificio",k:"uniforma tecnica remitos comision entregas precios lista logos"},
+  {n:"Las Floritas",u:B+"e15e2780-0c72-4d1b-b6aa-8ef5df88da2f",i:"flor",k:"floritas brenda cuenta corriente remitos pagos telas"},
+  {n:"UTHGRA",u:B+"ddd6c5cf-8e7e-4505-a6a6-3864a802ea34",i:"gorroChef",k:"uthgra zona norte pedidos depositos cuenta"}]},
+ {t:"Colegio Fátima",c:"g-fat",a:[
+  {n:"Bordados Egresados Primaria 2027",u:B+"8d2b282f-5058-421e-b31a-9ad396b85882",i:"aguja",k:"registro bordados egresados primaria curso 6"},
+  {n:"Egresados Jardín 2027",u:B+"1e9f79fe-c32f-4e62-a247-780a1f98c8b8",i:"gorro",k:"egresados jardin sala libreria"},
+  {n:"Ventas Fátima",u:B+"998a5a13-0d0a-4fb0-ac81-2f4a71a6cc66",i:"bolsa",k:"ventas colegio fatima uniformes"},
+  {n:"Balance Librería",u:B+"682b4d57-3e24-4b6b-aef1-3daa3669c0d3",i:"libro",k:"balance libreria majo 2026 cobros"},
+  {n:"Planilla Librería",u:"https://docs.google.com/spreadsheets/d/1oq5oTJ1MeAGA4DRRpdMMODya8a0cvxu8--GAorb7TA4/edit",i:"planilla",k:"planilla libreria google sheets stock ventas"}]},
+ {t:"Plata",c:"g-plata",a:[
+  {n:"Caja",u:B+"87eb9b6e-b80a-46b8-8a12-fd6f51196f75",i:"caja",k:"caja uniforma ingresos gastos sueldos efectivo"},
+  {n:"Facturar MP",u:B+"0436ad91-40fd-4348-ac17-8e2bc12c8387",i:"factura",k:"para facturar mercado pago mp"}]},
+ {t:"Otras",c:"",a:[
+  {n:"Calculadora de Tela",u:B+"07cd08c8-e071-42af-9281-e756f20e3301",i:"metro",k:"calculadora tela insumos metros"}]}
+];
+const app=n=>GRUPOS.flatMap(g=>g.a).find(a=>a.n===n);
+const ic=n=>`<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${I[n]}</svg></span>`;
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const $=id=>document.getElementById(id);
+function pintarApps(){
+  const q=norm($("q").value.trim());
+  const ok=a=>!q||q.split(/\s+/).every(w=>norm(a.n+" "+(a.d||"")+" "+a.k).includes(w));
+  let h="";
+  const c=CORTE.filter(ok);
+  if(c.length)h+=`<h2>Corte · uso diario</h2><div class="dest">`+c.map(a=>`<a class="dcard${a.prin&&!q?" prin":""}" href="${a.u}" target="_blank" rel="noopener">${ic(a.i)}<span><span class="nm">${a.n}</span><br><span class="ds">${a.d}</span></span>${a.prin&&!q?'<span class="fl" aria-hidden="true">→</span>':""}</a>`).join("")+`</div>`;
+  GRUPOS.forEach(g=>{const l=g.a.filter(ok);if(l.length)h+=`<h2>${g.t}</h2><div class="apps ${g.c}">`+l.map(a=>`<a class="app" href="${a.u}" target="_blank" rel="noopener">${ic(a.i)}<span class="nm">${a.n}</span></a>`).join("")+`</div>`;});
+  $("appsBody").innerHTML=h||`<p class="vacio">No encontré ninguna app con esa palabra.</p>`;
+}
+$("q").addEventListener("input",pintarApps);
+pintarApps();
+$("hoy").textContent=new Date().toLocaleDateString("es-AR",{weekday:"long",day:"numeric",month:"short"});
+function tab(id){
+  const plata=id==="plata";
+  $("v-apps").hidden=plata;$("v-plata").hidden=!plata;
+  $("t-apps").setAttribute("aria-selected",String(!plata));$("t-plata").setAttribute("aria-selected",String(plata));
+  try{localStorage.setItem("tab",id)}catch(e){}
+  if(plata)cargar(false);
+  window.scrollTo(0,0);
+}
+
+
+$("t-plata").onclick=()=>{location.href="https://claude.ai/artifact/RX6Kup39HMUVnudXme9gwe";};
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body></html>
