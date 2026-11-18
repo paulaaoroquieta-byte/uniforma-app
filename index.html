@@ -171,11 +171,9 @@ const CORTE=[
  {n:"Cortes Uniforma",d:"Cortes, stock del taller y entregas",u:"cortes.html",local:1,alt:B+"f4d87c12-2f78-4682-8a59-cbca581a1a71",i:"tijera",k:"corte stock taller entregas libreria majo prendas",prin:1},
  {n:"Stock Fátima",d:"Taller, librería y confección",u:"cortes.html#stock-fatima",local:1,alt:"https://claude.ai/artifact/XEc98DzdTYtxzQbasjVGDW#stock-fatima",i:"estante",k:"stock fatima faltan temporada"},
  {n:"Remito a la librería",d:"Llevar a Majo y descontar del taller",u:"cortes.html#llevar-libreria",local:1,alt:"https://claude.ai/artifact/XEc98DzdTYtxzQbasjVGDW#llevar-libreria",i:"remito",k:"remito libreria majo llevar entrega descontar stock"},
- {n:"Agenda",d:"Pedidos y pagos de la semana",u:B+"ad2b141a-8dff-4692-a79f-38fd6f7b3a5a",i:"agenda",k:"agenda calendario semana pagos etapas pedidos"}
+ {n:"Contactos",d:"Clientes, proveedores y talleres",u:"https://claude.ai/artifact/3PsxLJZRfp4a87TUsTzDD7",i:"contactos",k:"agenda contactos guia clientes proveedores talleres telefono whatsapp direccion como llegar mapa"}
 ];
 const GRUPOS=[
- {t:"Contactos",c:"g-cli",a:[
-  {n:"Contactos",u:"https://claude.ai/artifact/3PsxLJZRfp4a87TUsTzDD7",i:"contactos",k:"agenda contactos clientes proveedores talleres telefono whatsapp direccion como llegar mapa"}]},
  {t:"Clientes",c:"g-cli",a:[
   {n:"Técnica",u:"tecnica.html",local:1,alt:"https://claude.ai/artifact/4RxEFeDU6EtHeUeFvjbLQy",i:"edificio",k:"uniforma tecnica remitos comision entregas precios lista logos"},
   {n:"Las Floritas",u:B+"e15e2780-0c72-4d1b-b6aa-8ef5df88da2f",i:"flor",k:"floritas brenda cuenta corriente remitos pagos telas"},
@@ -190,7 +188,8 @@ const GRUPOS=[
   {n:"Caja",u:B+"87eb9b6e-b80a-46b8-8a12-fd6f51196f75",i:"caja",k:"caja uniforma ingresos gastos sueldos efectivo"},
   {n:"Facturar MP",u:B+"0436ad91-40fd-4348-ac17-8e2bc12c8387",i:"factura",k:"para facturar mercado pago mp"}]},
  {t:"Otras",c:"",a:[
-  {n:"Calculadora de Tela",u:B+"07cd08c8-e071-42af-9281-e756f20e3301",i:"metro",k:"calculadora tela insumos metros"}]}
+  {n:"Calculadora de Tela",u:B+"07cd08c8-e071-42af-9281-e756f20e3301",i:"metro",k:"calculadora tela insumos metros"},
+  {n:"Calendario",u:B+"ad2b141a-8dff-4692-a79f-38fd6f7b3a5a",i:"agenda",k:"calendario semana pagos etapas pedidos fechas"}]}
 ];
 const app=n=>GRUPOS.flatMap(g=>g.a).find(a=>a.n===n);
 const conectada=()=>!!(window.uniformaConexion&&window.uniformaConexion.get());
